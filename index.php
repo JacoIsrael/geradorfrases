@@ -1,20 +1,40 @@
 <?php
-
-    $titulos   = ["Mestre", "Mgnífico", "Senhor"];
-    $qualidade = ["lindo", "o melhor", "maravilhoso"];
-    $nome      = "Jacó";
+    session_start();
+    $_SESSION['atividades'][] = $_GET['atividade'];
 
 ?>
 
 <html>
 
     <head>
+        <style>
+            h3{
+                color: #29ffbc;
+            }
+            ol{
+                color: midnightblue;
+            }
+        </style>
 
     </head>
 
     <body>
 
-        <h2 <?php echo "$titulos[rand(0,2)]." $nome, ".$qualidade[rand(0,2)]"; ?> </h2>
+        <form method="get" >
+            <input type="text" name="atividade" placeholder="Ex.: Levar o bob passear" >
+            <input type="submit" value="adicionar">
+
+        </form>
+
+        <h3>Exibir atividades: </h3>
+
+        <ol>
+            <?php foreach ($_SESSION['atividades'] as $ativ); ?>
+
+                <li><?= $ativ; ?></li>
+
+             <?php endforeach; ?>
+        </ol>
 
     </body>
 
